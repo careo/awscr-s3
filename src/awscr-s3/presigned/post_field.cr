@@ -20,6 +20,10 @@ module Awscr
           @operator = "eq"
         end
 
+        def hashy?
+          @operator == "eq"
+        end
+
         # Serialize the key into the format required for a `Presigned::Post`
         def serialize
           case @operator

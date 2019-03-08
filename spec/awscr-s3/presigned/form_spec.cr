@@ -42,6 +42,31 @@ module Awscr
 
             form.fields.should be_a(FieldCollection)
           end
+
+          it "serializes properly" do
+            time = Time.unix(1)
+            Timecop.freeze(time)
+
+            form = Form.build(
+              region: "us-east-1",
+              aws_access_key: "test",
+              aws_secret_key: "test") do |f|
+              f.expiration(time)
+              f.condition("bucket", "bucket")
+              f.condition("acl", "private")
+              f.condition("key", "key")
+              f.condition("x-amz-server-side-encryption", "aws:kms")
+              f.condition("x-amz-server-side-encryption-aws-kms-key-id", "kms_key")
+              f.condition("starts-with", "$Content-Type", "")
+              f.condition("content-length-range", 0.to_s, 10000.to_s)
+            end
+
+            hash = form.fields.to_hash
+            pp hash
+            # policy = hash["policy"]
+            # decoded = Base64.decode_string(policy)
+            # puts decoded
+          end
         end
 
         describe "to_html" do

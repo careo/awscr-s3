@@ -40,7 +40,7 @@ module Awscr
 
         # Convert the collection to a hash in the form of key => value.
         def to_hash
-          self.reduce({} of String => String) do |hash, field|
+          self.select(&.hashy?).reduce({} of String => String) do |hash, field|
             hash[field.key] = field.value
             hash
           end
