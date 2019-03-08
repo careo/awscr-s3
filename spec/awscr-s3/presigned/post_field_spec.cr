@@ -28,6 +28,16 @@ module Awscr
           field = PostField.new("k", "v")
           field.serialize.should eq({"k" => "v"})
         end
+
+        it "super duper serializes" do
+          field = PostField.new("eq", "k", "v")
+          field.serialize.should eq({"k" => "v"})
+        end
+
+        it "really super duper serializes" do
+          field = PostField.new("neq", "$k", "v")
+          field.serialize.should eq(["neq", "$k", "v"])
+        end
       end
     end
   end

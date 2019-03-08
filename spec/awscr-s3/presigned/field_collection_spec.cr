@@ -4,8 +4,8 @@ module Awscr
   module S3
     module Presigned
       class TestField < PostField
-        def serialize
-        end
+        # def serialize
+        # end
       end
 
       describe FieldCollection do
@@ -44,6 +44,15 @@ module Awscr
             fields.push(TestField.new("k", "v"))
 
             fields.to_hash.should eq({"k" => "v"})
+          end
+        end
+        describe "serialize" do
+          it "handles more complex policy conditions" do
+            fields = FieldCollection.new
+            fields.push(TestField.new("k", "v"))
+            fields.push(TestField.new("neq", "$broken", "thing"))
+
+            fields.serialize.should eq([{"k" => "v"}, ["neq", "$broken", "thing"]])
           end
         end
 

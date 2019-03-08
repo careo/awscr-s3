@@ -46,6 +46,13 @@ module Awscr
           end
         end
 
+        # Make it serial
+        def serialize
+          self.map do |field|
+            field.serialize
+          end
+        end
+
         # :nodoc:
         private def clean_key(key)
           key.gsub("-", "_").downcase
