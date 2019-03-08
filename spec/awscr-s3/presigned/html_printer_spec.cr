@@ -49,7 +49,7 @@ module Awscr
           printer = HtmlPrinter.new(form)
 
           html = <<-HTML
-          <form action="http://test.s3.amazonaws.com" method="post" enctype="multipart/form-data">
+          <form action="https://test.s3.amazonaws.com" method="post" enctype="multipart/form-data">
             <input type="hidden" name="bucket" value="test" /><br />
             <input type="hidden" name="x-amz-credential" value="test/19700101/region/s3/aws4_request" /><br />
             <input type="hidden" name="x-amz-algorithm" value="AWS4-HMAC-SHA256" /><br />

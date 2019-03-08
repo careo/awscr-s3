@@ -27,7 +27,7 @@ module Awscr
               f.condition("bucket", "hi")
             end
 
-            form.url.should eq("http://hi.s3.amazonaws.com")
+            form.url.should eq("https://hi.s3.amazonaws.com")
           end
         end
 

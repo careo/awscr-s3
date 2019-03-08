@@ -32,7 +32,7 @@ module Awscr
         # Return the url to post to
         def url
           raise Exception.new("Invalid URL, no bucket field") unless bucket
-          "http://#{bucket}.s3.amazonaws.com"
+          "https://#{bucket}.s3.amazonaws.com"
         end
 
         # Returns the fields, without signature fields
