@@ -29,8 +29,14 @@ module Awscr
         end
 
         # Adds a `Condition` to the `Policy`.
+        def condition(operator : String, key : String, value : String | Int32)
+          @fields.push(PostField.new(operator, key, value))
+          self
+        end
+
+        # Adds a `Condition` to the `Policy`.
         def condition(key : String, value : String | Int32)
-          @fields.push(PostField.new(key, value))
+          @fields.push(PostField.new("eq", key, value))
           self
         end
 
